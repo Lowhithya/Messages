@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Posting Webpage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="fixed-header">
+        <h1>Message Posting Webpage</h1>
+    </header>
+    <main>
+        <section class="login-form" id="loginSection">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginName">Name:</label>
+                <input type="text" id="loginName" name="loginName" required>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+        <section class="message-form" id="messageSection" style="display: none;">
+            <h2>Post a Message</h2>
+            <form id="messageForm">
+                <input type="hidden" id="name" name="name">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                <button type="submit">Post Message</button>
+            </form>
+        </section>
+        <section class="messages">
+            <h2>Messages</h2>
+            <div id="messagesContainer"></div>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>

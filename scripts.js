@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     messageForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        
+
         const name = nameInput.value;
         const message = document.getElementById('message').value;
         const imageInput = document.getElementById('image');
@@ -55,11 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let messages = JSON.parse(localStorage.getItem('messages')) || [];
         messages.push(message);
         localStorage.setItem('messages', JSON.stringify(messages));
+        console.log('Saved message:', message);
     }
 
     function fetchMessages() {
         const messages = JSON.parse(localStorage.getItem('messages')) || [];
         const userName = localStorage.getItem('userName');
+        console.log('Fetched messages:', messages);
         messagesContainer.innerHTML = ''; // Clear previous messages
         messages.forEach(message => displayMessage(message, userName));
     }
@@ -75,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDiv.appendChild(img);
         }
         messagesContainer.appendChild(messageDiv);
+        console.log('Displayed message:', message);
     }
 
     // Initial fetch to display messages if the user is already logged in

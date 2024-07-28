@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
 
     // Check if the user is already logged in
-    const storedName = sessionStorage.getItem('userName');
+    const storedName = localStorage.getItem('userName');
     if (storedName) {
         showMessageSection(storedName);
     }
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSection.style.display = 'none';
         messageSection.style.display = 'block';
         nameInput.value = name;
+        fetchMessages(); // Fetch messages when showing the message section
     }
 
     messageForm.addEventListener('submit', (event) => {
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchMessages() {
         const messages = JSON.parse(localStorage.getItem('messages')) || [];
         const userName = localStorage.getItem('userName');
+        messagesContainer.innerHTML = ''; // Clear previous messages
         messages.forEach(message => displayMessage(message, userName));
     }
 
@@ -75,5 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         messagesContainer.appendChild(messageDiv);
     }
 
-    fetchMessages();
+    // Initial fetch to display messages if the user is already logged in
+    if (storedName) {
+        fetchMessages();
+    }
 });
